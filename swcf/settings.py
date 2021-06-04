@@ -1,5 +1,5 @@
 USER_DB = 'postgres'
-PASS_DB = '1234'
+PASS_DB = '12345'
 HOST_DB = 'localhost'
 PORT_DB = '5432'
 NAME_DB = 'swcf'
