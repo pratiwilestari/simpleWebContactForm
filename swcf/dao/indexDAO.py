@@ -20,11 +20,11 @@ def insertPost(name, email, issue, content):
     try:
         cursor = conn.cursor()
         query = '''INSERT INTO post VALUES(
-                        SELECT COALESCE(MAX(id), 1) FROM post,
+                        (SELECT COALESCE(MAX(id)+1, 1) FROM post),
                         %s, %s, %s, %s); '''
         cursor.execute(query, (name, email, issue, content, ))
-        data = rows_to_dict(cursor)
-        return responseJSON('T', 'sukses select', None) 
+        conn.commit()
+        return responseJSON('T', 'sukses insert', None) 
     except Exception as err:
         return responseJSON('F', str(err), None)
     finally:
